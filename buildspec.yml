@@ -9,21 +9,16 @@ phases:
       nodejs: 14
     commands:
       #- echo "Building from trigger -> $CODEBUILD_WEBHOOK_TRIGGER <- with dev dependencies"
-      #- curl -s https://getcomposer.org/installer | php
-      #- mv  composer.phar /usr/local/bin/composer
-      # - php --version
-      # - composer --version
       - composer install --no-interaction --prefer-dist --optimize-autoloader
       - cp .env.example .env
       - php artisan key:generate
   pre_build:
     commands:
+      - echo "Run php unit test"
       - php artisan test
-      # - echo "Run php unit test"
-      # - ./vendor/bin/phpunit
   build:
     commands:
-      - echo "todo -> Build an artifact"
+      - ./scripts/build.sh staging
   post_build:
     commands:
       - echo "todo -> Kick off a deployment"
@@ -31,7 +26,7 @@ phases:
       - php artisan view:cache
       - php artisan cache:clear
       - php artisan config:cache
-artifacts:
-  files:
-    - "**/*"
-  name: $CODEBUILD_RESOLVED_SOURCE_VERSION
+# artifacts:
+#   files:
+#     - "**/*"
+#   name: $CODEBUILD_RESOLVED_SOURCE_VERSION
