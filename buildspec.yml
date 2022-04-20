@@ -4,6 +4,7 @@ version: 0.2
 run-as: root
 phases:
   install:
+    on-failure: ABORT
     runtime-versions:
       php: 8.0
       nodejs: 14
@@ -13,13 +14,16 @@ phases:
       - cp .env.example .env
       - php artisan key:generate
   pre_build:
+    on-failure: ABORT
     commands:
       - echo "Run php unit test"
       - php artisan test
   build:
+     on-failure: ABORT
     commands:
       - ./scripts/build.sh staging
   post_build:
+     on-failure: ABORT
     commands:
       - echo "todo -> Kick off a deployment"
       - php artisan route:cache
