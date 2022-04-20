@@ -18,11 +18,11 @@ phases:
       - echo "Run php unit test"
       - php artisan test
   build:
-     on-failure: ABORT
+    on-failure: ABORT
     commands:
       - ./scripts/build.sh staging
   post_build:
-     on-failure: ABORT
+    on-failure: ABORT
     commands:
       - echo "todo -> Kick off a deployment"
       - php artisan route:cache
