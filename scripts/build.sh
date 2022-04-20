@@ -5,12 +5,10 @@ npm install
 npm run production
 composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
 
-
 # TODO: Generate a .env file
-
+ 
 
 # Create our build artifact
-# -qur quitely build resource
 git archive -o builds/cloudcasts.zip --worktree-attributes HEAD
 zip -qur builds/cloudcasts.zip vendor
 zip -qur builds/cloudcasts.zip public
