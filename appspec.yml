@@ -1,0 +1,21 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /home/cloudcasts/cloudcasts.io
+permissions:
+  - object: /home/cloudcasts/cloudcasts.io
+    owner: ubuntu
+    group: www-data
+hooks:
+  BeforeInstall:
+    #- chmod +x scripts/build.sh
+    #- chmod +x scripts/before_install.sh
+    #- chmod +x scripts/after_install.sh
+    - location: scripts/before_install.sh
+      timeout: 30
+      runas: root
+  AfterInstall:
+    - location: scripts/after_install.sh
+      timeout: 30
+      runas: root

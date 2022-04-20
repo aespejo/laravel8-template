@@ -3,15 +3,7 @@
 # Production assets/dependencies
 npm install
 npm run production
-composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev
-
-# Get .env file from AWS SSM
-aws --region ap-southeast-1 ssm get-parameter \
-    --with-decryption \
-    --name /cloudcasts/staging/env \
-    --output text \
-    --query 'Parameter.Value' > .env 
- 
+composer install --no-interaction --prefer-dist --optimize-autoloader --no-dev 
 
 # Create our build artifact
 git archive -o builds/cloudcasts.zip --worktree-attributes HEAD
