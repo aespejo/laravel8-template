@@ -4,7 +4,6 @@ version: 0.2
 run-as: root
 phases:
   install:
-    on-failure: ABORT
     runtime-versions:
       php: 8.0
       nodejs: 14
