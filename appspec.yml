@@ -2,9 +2,9 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /home/cloudcasts/cloudcasts.io
+    destination: /var/www/cloudcasts.io
 permissions:
-  - object: /home/cloudcasts/cloudcasts.io
+  - object: /var/www/cloudcasts.io
     owner: ubuntu
     group: www-data
 hooks:

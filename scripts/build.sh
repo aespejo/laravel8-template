@@ -1,4 +1,4 @@
-#/bin/bash
+#!/usr/bin/env bash
 
 # Production assets/dependencies
 npm install
@@ -19,7 +19,6 @@ aws s3 cp builds/cloudcasts.zip s3://cloudcasts-$1-artifacts/$CODEBUILD_RESOLVED
 # git update-index --add --chmod=+x build.sh
 # git commit -m 'Make build.sh executable'
 # git push
-
 # OR
 # before_install:
 #   - chmod +x build.sh
@@ -34,3 +33,13 @@ aws s3 cp builds/cloudcasts.zip s3://cloudcasts-$1-artifacts/$CODEBUILD_RESOLVED
 
 # Windows powershell cli
 # aws --profile aespejo --region ap-southeast-1 ssm put-parameter --name /cloudcasts/staging/env --type SecureString --value file://.env
+
+# [program:cloudcasts]
+# process_name=%(program_name)s_%(process_num)02d
+# command=php /home/cloudcasts/cloudcasts.io/artisan queue:listen --sleep=3 --tries=3
+# autostart=true
+# autorestart=true
+# user=cloudcasts
+# numprocs=2
+# redirect_stderr=true
+# stdout_logfile=/var/log/cloudcasts/queue.log
