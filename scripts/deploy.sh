@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# AWS CLI
+# https://docs.aws.amazon.com/cli/latest/reference/deploy/create-deployment.html
+
 # Deploy web servers
 aws --region ap-southeast-1 deploy create-deployment \
     --application-name cloudcasts-$1-deploy-app \
