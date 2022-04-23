@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/health', function () {
     return "You're doing good!";
 });
+
+Route::get('/alvin', function () {
+    return "You're doing good alvin";
+});
