@@ -6,11 +6,11 @@
 DEPLOY_ENV="nah"
 
 if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/main" ]]; then
-    DEPLOY_ENV="staging"
+    DEPLOY_ENV="stg"
 fi
 
 if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "tag/"* ]]; then
-    DEPLOY_ENV="production"
+    DEPLOY_ENV="prod"
 fi
 
 if [[ "$DEPLOY_ENV" != "nah" ]]; then
