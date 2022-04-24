@@ -3,7 +3,7 @@
 # AWS CLI
 # https://docs.aws.amazon.com/cli/latest/reference/deploy/create-deployment.html
 
-DEPLOY_ENV=""
+DEPLOY_ENV="nah"
 
 if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/main" ]]; then
     DEPLOY_ENV="staging"
@@ -13,7 +13,7 @@ if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "tag/"* ]]; then
     DEPLOY_ENV="production"
 fi
 
-if [[ "$DEPLOY_ENV" != "" ]]; then
+if [[ "$DEPLOY_ENV" != "nah" ]]; then
     # Deploy web servers
     aws --region ap-southeast-1 deploy create-deployment \
         --application-name cloudcasts-$DEPLOY_ENV-deploy-app \
