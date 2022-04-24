@@ -13,6 +13,8 @@ if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "tag/"* ]]; then
     DEPLOY_ENV="prod"
 fi
 
+echo "$CODEBUILD_INITIATOR"
+
 if [[ "$DEPLOY_ENV" != "nah" ]]; then
     # Deploy web servers
     aws --region ap-southeast-1 deploy create-deployment \
