@@ -2,7 +2,7 @@
 
 # Get .env file from AWS SSM
 cd /var/www/cloudcasts.io
-aws --region ap-southeast-1 ssm get-parameter --with-decryption --name /cloudcasts/staging/env --output text --query 'Parameter.Value' > .env 
+aws --region ap-southeast-1 ssm get-parameter --with-decryption --name /cloudcasts/stg/env --output text --query 'Parameter.Value' > .env 
 
 # Set permissions
 sudo chown -R ubuntu:www-data /var/www/cloudcasts.io
