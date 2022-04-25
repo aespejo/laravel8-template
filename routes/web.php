@@ -17,8 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/health', function () {
-    return "You're doing good!";
+Route::get('/mongo', function () {
+    return "You're doing good mongo!";
 });
 
 Route::get('/server', function () {
