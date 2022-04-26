@@ -27,6 +27,7 @@ if [[ "$DO_BUILD" == "yes" ]]; then
     # Create our build artifact
     git archive -o builds/alvinespejo.zip --worktree-attributes HEAD
     zip -qur builds/alvinespejo.zip vendor
+    zip -qur builds/alvinespejo.zip node_modules
     zip -qur builds/alvinespejo.zip public
     zip -qur builds/alvinespejo.zip .env # Grab our testing .env file for now
 
