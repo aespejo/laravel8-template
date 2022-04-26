@@ -16,6 +16,7 @@ phases:
     on-failure: ABORT
     commands:
       - echo "Run PHP feature and unit tests"
+      - touch database/db.sqlite
       - php artisan test
   build:
     on-failure: ABORT
@@ -25,9 +26,10 @@ phases:
       - php artisan view:cache
       - php artisan cache:clear
       - php artisan config:cache
+      - rm database/db.sqlite
       - ./scripts/build.sh
   post_build:
     on-failure: ABORT
     commands:
-      - echo "Deploy web application to servers" 
+      - echo "Deploy web application to servers"
       - ./scripts/deploy.sh
