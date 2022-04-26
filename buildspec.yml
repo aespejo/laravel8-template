@@ -17,6 +17,8 @@ phases:
     commands:
       - echo "Run PHP feature and unit tests"
       - touch database/db.sqlite
+      - npm install 
+      - npm run dev
       - php artisan test
   build:
     on-failure: ABORT
