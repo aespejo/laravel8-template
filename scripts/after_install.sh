@@ -9,7 +9,7 @@ if [[ "$DEPLOYMENT_GROUP_NAME" == *"stg"* ]]; then
 fi
 
 if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == *"dev"* ]]; then
-    DO_BUILD="dev"
+    DEPLOY_ENV="dev"
 fi
 
 # Get .env file from AWS SSM
