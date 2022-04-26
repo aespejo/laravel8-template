@@ -1,19 +1,15 @@
 #!/usr/bin/env bash
 
-if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/main" ]]; then
+if [[ "$DEPLOYMENT_GROUP_NAME" == *"prod"* ]]; then
     DEPLOY_ENV="prod"
 fi
 
-if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/staging" ]]; then
+if [[ "$DEPLOYMENT_GROUP_NAME" == *"stg"* ]]; then
     DEPLOY_ENV="stg"
 fi
 
-if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/development" ]]; then
+if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == *"dev"* ]]; then
     DO_BUILD="dev"
-fi
-
-if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "tag/"* ]]; then
-    DEPLOY_ENV="prod"
 fi
 
 # Get .env file from AWS SSM
