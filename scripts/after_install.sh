@@ -14,7 +14,7 @@ fi
 
 # Get .env file from AWS SSM
 cd /var/www/alvinespejo.com
-echo - $DEPLOY_ENV - 
+echo - /alvinespejo/$DEPLOY_ENV/env - 
 
 aws --region ap-southeast-1 ssm get-parameter --with-decryption --name /alvinespejo/$DEPLOY_ENV/env --output text --query 'Parameter.Value' > .env 
 
