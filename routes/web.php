@@ -24,3 +24,13 @@ Route::get('/mongo', function () {
 Route::get('/server', function () {
     return "Hello, from server address " . gethostname();
 });
+
+Route::middleware([
+    'auth',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});

@@ -1,13 +1,29 @@
 #!/usr/bin/env bash
 
+if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/main" ]]; then
+    DEPLOY_ENV="prod"
+fi
+
+if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/staging" ]]; then
+    DEPLOY_ENV="stg"
+fi
+
+if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/development" ]]; then
+    DO_BUILD="dev"
+fi
+
+if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "tag/"* ]]; then
+    DEPLOY_ENV="prod"
+fi
+
 # Get .env file from AWS SSM
-cd /var/www/cloudcasts.io
-aws --region ap-southeast-1 ssm get-parameter --with-decryption --name /cloudcasts/stg/env --output text --query 'Parameter.Value' > .env 
+cd /var/www/alvinespejo.com
+aws --region ap-southeast-1 ssm get-parameter --with-decryption --name /alvinespejo/$DEPLOY_ENV/env --output text --query 'Parameter.Value' > .env 
 
 # Set permissions
-sudo chown -R ubuntu:www-data /var/www/cloudcasts.io
-sudo chmod -R 775 /var/www/cloudcasts.io/storage
-sudo chmod -R 775 /var/www/cloudcasts.io/bootstrap/cache
+sudo chown -R ubuntu:www-data /var/www/alvinespejo.com
+sudo chmod -R 775 /var/www/alvinespejo.com/storage
+sudo chmod -R 775 /var/www/alvinespejo.com/bootstrap/cache
 
 # Below conditional syntax from here:
 # https://stackoverflow.com/questions/229551/how-to-check-if-a-string-contains-a-substring-in-bash
@@ -24,4 +40,4 @@ if [[ "$DEPLOYMENT_GROUP_NAME" == *"queue"* ]]; then
     supervisorctl start all
 fi
 
-# sudo -u ubuntu php artisan migrate --force
+sudo -u ubuntu php artisan migrate --force

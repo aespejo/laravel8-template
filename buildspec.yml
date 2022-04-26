@@ -21,9 +21,13 @@ phases:
     on-failure: ABORT
     commands:
       - echo "Build web application" 
-      - ./scripts/build.sh staging
+      - php artisan route:cache
+      - php artisan view:cache
+      - php artisan cache:clear
+      - php artisan config:cache
+      - ./scripts/build.sh
   post_build:
     on-failure: ABORT
     commands:
       - echo "Deploy web application to servers" 
-      - ./scripts/deploy.sh staging
+      - ./scripts/deploy.sh

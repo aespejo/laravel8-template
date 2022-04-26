@@ -2,16 +2,13 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /var/www/cloudcasts.io
+    destination: /var/www/alvinespejo.com
 permissions:
-  - object: /var/www/cloudcasts.io
+  - object: /var/www/alvinespejo.com
     owner: ubuntu
     group: www-data
 hooks:
   BeforeInstall:
-    #- chmod +x scripts/build.sh
-    #- chmod +x scripts/before_install.sh
-    #- chmod +x scripts/after_install.sh
     - location: scripts/before_install.sh
       timeout: 30
       runas: root
