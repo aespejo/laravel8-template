@@ -38,4 +38,4 @@ if [[ "$DEPLOYMENT_GROUP_NAME" == *"queue"* ]]; then
     supervisorctl start all
 fi
 
-sudo -u ubuntu php artisan migrate --force
+php artisan migrate --force
