@@ -17,8 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/mongo', function () {
-    return "You're doing good mongo!";
+Route::get('/dump', function () {
+    return config('app.env');
 });
 
 Route::get('/server', function () {
