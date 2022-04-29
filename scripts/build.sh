@@ -54,13 +54,3 @@ fi
 
 # Windows powershell cli
 # aws --profile aespejo --region ap-southeast-1 ssm put-parameter --name /alvinespejo/staging/env --type SecureString --value file://.env
-
-# [program:alvinespejo]
-# process_name=%(program_name)s_%(process_num)02d
-# command=php /home/alvinespejo/alvinespejo.com/artisan queue:listen --sleep=3 --tries=3
-# autostart=true
-# autorestart=true
-# user=alvinespejo
-# numprocs=2
-# redirect_stderr=true
-# stdout_logfile=/var/log/alvinespejo/queue.log
