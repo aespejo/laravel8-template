@@ -9,6 +9,10 @@ if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/main" ]]; then
     DEPLOY_ENV="prod"
 fi
 
+if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/master" ]]; then
+    DEPLOY_ENV="prod"
+fi
+
 if [[ "$CODEBUILD_WEBHOOK_TRIGGER" == "branch/staging" ]]; then
     DEPLOY_ENV="stg"
 fi
