@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Country;
 use App\Models\Team;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -65,5 +66,20 @@ class UserFactory extends Factory
                 }),
             'ownedTeams'
         );
+    }
+
+    /**
+     * Undocumented function
+     *
+     * @param integer|null $countryId
+     * @return void
+     */
+    public function country(int $countryId)
+    {
+        return $this->state(function (array $attributes) use ($countryId) {
+            return [
+                'country_id' => ($countryId <= 0) ? Country::factory()->create()->id : $countryId,
+            ];
+        });
     }
 }

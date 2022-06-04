@@ -19,7 +19,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use TwoFactorAuthenticatable;
 
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass assignable. 
      *
      * @var string[]
      */
@@ -27,6 +27,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'email',
         'password',
+        'country_id',
     ];
 
     /**
@@ -58,4 +59,13 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function roles() {
+        return $this->belongsToMany(Role::class)->withTimestamps();
+    }
+    
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }
